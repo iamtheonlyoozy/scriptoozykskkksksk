@@ -79,4 +79,23 @@ Tab:AddToggle({
     end
 })
 
+-- Add a WalkSpeed slider for the player to edit
+Tab:AddSlider({
+    Name = "WalkSpeed",
+    Min = 1,
+    Max = 100,
+    Default = 16,
+    Callback = function(Value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        if character then
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = Value
+            end
+        end
+    end
+})
+
 OrionLib:Init()
+
