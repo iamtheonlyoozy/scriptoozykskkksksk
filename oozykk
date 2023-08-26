@@ -1,0 +1,82 @@
+_G.maxopen = false
+_G.maxstar = false
+_G.autoAfk = false
+
+local remothePath = game:GetService("ReplicatedStorage")
+
+function maxopen()
+    while _G.maxopen == true do
+        local args = {
+            [1] = "DBZSuperEgg"
+        }
+        game:GetService("ReplicatedStorage").Remote.AttemptMultiOpen:FireServer(unpack(args))
+
+        wait(1)
+    end
+end
+
+function maxstar()
+    while _G.maxstar == true do
+        local args = {
+            [1] = workspace.Worlds.DBZSuper.DBZSuperEgg,
+            [2] = 14
+        }
+
+        game:GetService("ReplicatedStorage").Remote.OpenEgg:InvokeServer(unpack(args))
+
+        wait(1)
+    end
+end
+
+function performAntiAfk()
+    while _G.autoAfk == true do
+        -- Move the mouse slightly to simulate activity
+        mousemoveabs(0, 1)
+        wait(120)  -- Adjust the time interval as needed
+    end
+end
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "oozy hub", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+    Name = "autonosultimosmundos",
+    Icon = "",
+    PremiumOnly = false
+})
+
+Tab:AddToggle({
+    Name = "Auto MaxOpen",
+    Default = false,
+    Callback = function(Value)
+        _G.maxopen = Value
+        if Value then
+            maxopen()
+        end
+    end
+})
+
+Tab:AddToggle({
+    Name = "Auto MaxStar",
+    Default = false,
+    Callback = function(Value)
+        _G.maxstar = Value
+        if Value then
+            maxstar()
+        end
+    end
+})
+
+Tab:AddToggle({
+    Name = "Auto AFK",
+    Default = false,
+    Callback = function(Value)
+        _G.autoAfk = Value
+        if Value then
+            performAntiAfk()
+        end
+    end
+})
+
+OrionLib:Init()
