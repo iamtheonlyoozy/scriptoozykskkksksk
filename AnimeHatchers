@@ -1,0 +1,210 @@
+_G.Auto2 = false
+_G.Auto1 = false
+_G.AutoRebirth = false
+_G.Upgrade = false
+_G.auto3 = false
+
+
+local remothePath = game:GetService("ReplicatedStorage")
+
+function Upgrade()
+    while _G.Upgrade == true do
+   
+       game:GetService("ReplicatedStorage").Packages.Knit.Services.PetService.RF.upgradeAll:InvokeServer()
+
+       wait(0)
+    end
+end
+
+
+function AutoRebirth()
+    while _G.AutoRebirth == true do
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.rebirth:InvokeServer()
+
+        wait(0)
+    end
+end
+
+function auto3()
+    while _G.Auto3 == true do
+    local args = {
+    [1] = 6,
+    [2] = {}
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+        wait(0)
+    end
+end
+
+
+
+function Auto1()
+    while _G.Auto1 == true do
+    local args = {
+    [1] = 1,
+    [2] = {}
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+        wait(0)
+    end
+end
+
+
+
+
+function Auto2()
+    while _G.Auto2 == true do
+    local args = {
+    [1] = 3,
+    [2] = {}
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+        wait(0)
+    end
+end
+
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/iamtheonlyoozy/oozyhubloading/main/noscamez')))()
+
+local Window = OrionLib:MakeWindow({Name = "Anime Hatchers", HidePremium = true, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+    Name = "Farm",
+    Icon = "",
+    PremiumOnly = false
+})
+
+Tab:AddToggle({
+    Name = "Auto Rebirth",
+    Default = false,
+    Callback = function(Value)
+        _G.AutoRebirth = Value
+        if Value then
+            AutoRebirth()
+        end
+    end
+})
+
+
+Tab:AddToggle({
+    Name = "Upgrade All",
+    Default = false,
+    Callback = function(Value)
+        _G.Upgrade = Value
+        if Value then
+            Upgrade()
+        end
+    end
+})
+
+
+
+
+local Tab = Window:MakeTab({
+    Name = "Local Player",
+    Icon = "",
+    PremiumOnly = false
+})
+
+
+-- Add a WalkSpeed slider for the player to edit
+Tab:AddSlider({
+    Name = "WalkSpeed",
+    Min = 30,
+    Max = 701,
+    Default = 31,
+    Callback = function(Value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        if character then
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = Value
+            end
+        end
+    end
+})
+
+
+
+Tab:AddSlider({
+    Name = "JumpPower",
+    Min = 30,
+    Max = 701,
+    Default = 30,
+    Callback = function(Value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        if character then
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = Value
+            end
+        end
+    end
+})
+
+
+
+
+Tab:AddToggle({
+    Name = "Anti AFK",
+    Default = false,
+    Callback = function(Value)
+        _G.autoAfk = Value
+        if Value then
+            performAntiAfk()
+        end
+    end
+})
+
+
+local Tab = Window:MakeTab({
+    Name = "Eggs",
+    Icon = "",
+    PremiumOnly = false
+})
+
+
+Tab:AddToggle({
+    Name = "Auto DemonSlayer",
+    Default = false,
+    Callback = function(Value)
+        _G.Auto2 = Value
+        if Value then
+            Auto2()
+        end
+    end
+})
+
+
+Tab:AddToggle({
+    Name = "Auto OnePiece",
+    Default = false,
+    Callback = function(Value)
+        _G.Auto1 = Value
+        if Value then
+            Auto1()
+        end
+    end
+})
+
+
+Tab:AddToggle({
+    Name = "Auto Naruto",
+    Default = false,
+    Callback = function(Value)
+        _G.auto3 = Value
+        if Value then
+            auto3()
+        end
+    end
+})
