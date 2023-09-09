@@ -2,10 +2,74 @@ _G.Auto2 = false
 _G.Auto1 = false
 _G.AutoRebirth = false
 _G.Upgrade = false
-_G.auto3 = false
+_G.Auto3 = false
+_G.equipbest = false
+_G.autogem1 = false
+_G.autogem2 = false
+_G.autogem3 = false
 
 
 local remothePath = game:GetService("ReplicatedStorage")
+
+function autogem3()
+    while _G.autogem3 == true do
+    local args = {
+    [1] = 6
+    
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+
+        wait(0)
+    end
+end
+
+function autogem1()
+    while _G.autogem1 == true do
+    local args = {
+    [1] = 2
+    
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+
+        wait(0)
+    end
+end
+
+
+
+function autogem2()
+    while _G.autogem2 == true do
+    local args = {
+    [1] = 4
+    
+}
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.hatchAuto:InvokeServer(unpack(args))
+
+
+        wait(0)
+    end
+end
+
+
+
+function equipbest()
+    while _G.equipbest == true do
+
+        game:GetService("ReplicatedStorage").Packages.Knit.Services.PetService.RF.equipBest:InvokeServer()
+
+        wait(20)
+    end
+end
+
+
+
+
+
 
 function Upgrade()
     while _G.Upgrade == true do
@@ -26,7 +90,7 @@ function AutoRebirth()
     end
 end
 
-function auto3()
+function Auto3()
     while _G.Auto3 == true do
     local args = {
     [1] = 6,
@@ -81,6 +145,22 @@ local Tab = Window:MakeTab({
     Icon = "",
     PremiumOnly = false
 })
+
+
+
+
+Tab:AddToggle({
+    Name = "EquipBest",
+    Default = false,
+    Callback = function(Value)
+        _G.equipbest = Value
+        if Value then
+            equipbest()
+        end
+    end
+})
+
+
 
 Tab:AddToggle({
     Name = "Auto Rebirth",
@@ -168,22 +248,12 @@ Tab:AddToggle({
 
 
 local Tab = Window:MakeTab({
-    Name = "Eggs",
+    Name = "Eggs Money",
     Icon = "",
     PremiumOnly = false
 })
 
 
-Tab:AddToggle({
-    Name = "Auto DemonSlayer",
-    Default = false,
-    Callback = function(Value)
-        _G.Auto2 = Value
-        if Value then
-            Auto2()
-        end
-    end
-})
 
 
 Tab:AddToggle({
@@ -198,13 +268,87 @@ Tab:AddToggle({
 })
 
 
+
+
+
+Tab:AddToggle({
+    Name = "Auto DemonSlayer",
+    Default = false,
+    Callback = function(Value)
+        _G.Auto2 = Value
+        if Value then
+            Auto2()
+        end
+    end
+})
+
+
+
+
+
 Tab:AddToggle({
     Name = "Auto Naruto",
     Default = false,
     Callback = function(Value)
-        _G.auto3 = Value
+        _G.Auto3 = Value
         if Value then
-            auto3()
+            Auto3()
         end
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "Eggs Gems",
+    Icon = "",
+    PremiumOnly = false
+})
+
+
+Tab:AddToggle({
+    Name = "Auto OnePiece",
+    Default = false,
+    Callback = function(Value)
+        _G.autogem1 = Value
+        if Value then
+            autogem1()
+        end
+    end
+})
+
+Tab:AddToggle({
+    Name = "Auto DemonSlayer",
+    Default = false,
+    Callback = function(Value)
+        _G.autogem2 = Value
+        if Value then
+            autogem2()
+        end
+    end
+})
+
+Tab:AddToggle({
+    Name = "Auto Naruto",
+    Default = false,
+    Callback = function(Value)
+        _G.autogem3 = Value
+        if Value then
+            autogem3()
+        end
+    end
+})
+
+
+
+local Tab = Window:MakeTab({
+    Name = "Settings",
+    Icon = "",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "Rejoin Game",
+    Callback = function()
+        -- Code to rejoin the game goes here
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId)
     end
 })
