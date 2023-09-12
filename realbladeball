@@ -1,0 +1,10 @@
+local allowedPlaceID = 13264238461 
+
+local currentPlaceID = tonumber(string.match(game.PlaceId, "%d+"))
+
+if currentPlaceID ~= allowedPlaceID then
+    game:GetService("Players").LocalPlayer:Kick("Tu é doente macaco? ta tentando usar essa script noutro jogo?")
+else
+    
+    loadstring(game:HttpGet("loadstring(game:HttpGet("https://raw.githubusercontent.com/iamtheonlyoozy/scriptoozykskkksksk/main/bladeball"))()
+end
