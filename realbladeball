@@ -1,4 +1,4 @@
-local allowedPlaceID = 13264238461 
+local allowedPlaceID = 13772394625
 
 local currentPlaceID = tonumber(string.match(game.PlaceId, "%d+"))
 
